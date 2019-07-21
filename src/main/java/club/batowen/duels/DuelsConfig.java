@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class DuelsConfig {
+public class DuelsConfig{
 
     private Location spawn,pos1,pos2,assist;
     private final File configuration;
@@ -19,7 +19,6 @@ public class DuelsConfig {
     public DuelsConfig(JavaPlugin plugin){
         configuration = new File(plugin.getDataFolder(), "configuration.yml");
     }
-
 
     public boolean loadFile() {
         try {
@@ -60,7 +59,12 @@ public class DuelsConfig {
         yalm.set("section.z", location.getZ());
         yalm.set("section.pitch", location.getPitch());
         yalm.set("section.yaw", location.getYaw());
-        yalm.save(file);
+        try {
+            yalm.save(configuration);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public boolean readyLoc(){
@@ -89,6 +93,7 @@ public class DuelsConfig {
      */
     public void setAssist(Location assist) {
         this.assist = assist;
+        setLocation("assist", assist);
     }
 
     /**
@@ -96,6 +101,7 @@ public class DuelsConfig {
      */
     public void setPos1(Location pos1) {
         this.pos1 = pos1;
+        setLocation("pos1", pos1);
     }
     
     /**
@@ -103,6 +109,7 @@ public class DuelsConfig {
      */
     public void setPos2(Location pos2) {
         this.pos2 = pos2;
+        setLocation("pos2", pos2);
     }
     
     /**
@@ -110,5 +117,6 @@ public class DuelsConfig {
      */
     public void setSpawn(Location spawn) {
         this.spawn = spawn;
+        setLocation("spawn", spawn);
     }
 }

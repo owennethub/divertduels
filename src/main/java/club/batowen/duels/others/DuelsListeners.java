@@ -32,7 +32,7 @@ public class DuelsListeners implements Listener{
         Player player = event.getPlayer();
 
         if(manager.inDuel(player.getUniqueId())) {
-            DuelMatch match = manager.lookupMatchByPlayerUuid(player.getUniqueId());
+            DuelMatch match = manager.lookupMatchByPlayerUuid(player.getUniqueId(), (as)-> as.getState()==1);
             match.stop("§fO jogador §b"+player.getName()+" §fsaiu do duelo.");
             UUID winner = player.getUniqueId() == match.getPlayer1() ? match.getPlayer2() : match.getPlayer1();
             match.win(winner);
@@ -59,7 +59,7 @@ public class DuelsListeners implements Listener{
         Player player = event.getEntity();
 
         if(manager.inDuel(player.getUniqueId())) {
-            DuelMatch match = manager.lookupMatchByPlayerUuid(player.getUniqueId());
+            DuelMatch match = manager.lookupMatchByPlayerUuid(player.getUniqueId(),(as)-> as.getState()==1);
             UUID winner = player.getUniqueId() == match.getPlayer1() ? match.getPlayer2() : match.getPlayer1();
             match.win(winner);
             match.stop(ChatColor.YELLOW + "Duelo terminou.");

@@ -3,8 +3,7 @@ package club.batowen.duels.core;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
-
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 
 public class DuelsManager {
 
@@ -34,6 +33,9 @@ public class DuelsManager {
         matchholder.put(duelmatch.getIdmatch(), duelmatch);
     }
 
+    public void addInduelPlayer(UUID uuid) {
+        induel.add(uuid);
+    }
     public void removeMatch(DuelMatch match) {
 
         if(induel.contains(match.getPlayer1())) {
@@ -51,9 +53,10 @@ public class DuelsManager {
         return null;
     }
 
-    public DuelMatch lookupMatchByPlayerUuid(UUID uuid) {
-        return matchholder.values().stream().filter((match) -> match.getPlayer1() == uuid || match.getPlayer2() == uuid).findFirst().get();
+    public DuelMatch lookupMatchByPlayerUuid(UUID uuid, Predicate<? super DuelMatch> condition) {
+        return matchholder.values().stream().filter((match) -> match.getPlayer1() == uuid || match.getPlayer2() == uuid).filter(condition).findFirst().get();
     }
+    
     public DuelMatch lookupMatchBySpectatorUuid(UUID uuid) {
         return matchholder.values().stream().filter((match) -> match.getAudience().contains(uuid)).findFirst().get();
     }

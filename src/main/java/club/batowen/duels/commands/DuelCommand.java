@@ -21,9 +21,9 @@ public class DuelCommand implements CommandExecutor {
         
         if(sender instanceof Player) {
             if(arguments.length < 2) {
-                sender.sendMessage("§fPara começar um duelo use §b/duelo <jogador> <recompensa>");
-                sender.sendMessage("§fPara aceitar um duelo use §b/duelo <jogador> aceitar");
-                sender.sendMessage("§fPara assistir um duelo use §b/duelo <jogador> assistir");
+                sender.sendMessage("§fPara começar um duelo use §e/duelo <jogador> <recompensa>");
+                sender.sendMessage("§fPara aceitar um duelo use §e/duelo <jogador> §eaceitar");
+                sender.sendMessage("§fPara assistir um duelo use §e/duelo <jogador> §eassistir");
             }
             else {
                 Player player1 = (Player)sender;
@@ -38,9 +38,9 @@ public class DuelCommand implements CommandExecutor {
                     else if(arguments[1].equalsIgnoreCase("assistir")) 
                         Commands.assistduel.accept(new Commands.SimpleCommand(player1, arguments));
                     else {
-                        sender.sendMessage("§fPara começar um duelo use §b/duelo <jogador> <recompensa>");
-                        sender.sendMessage("§fPara aceitar um duelo use §b/duelo <jogador> aceitar");
-                        sender.sendMessage("§fPara assistir um duelo use §b/duelo <jogador> assistir");
+                        sender.sendMessage("§fPara começar um duelo use §e/duelo <jogador> <recompensa>");
+                        sender.sendMessage("§ePara aceitar um duelo use §e/duelo <jogador> §eaceitar");
+                        sender.sendMessage("§ePara assistir um duelo use §e/duelo <jogador> §eeassistir");
                     }
                         
                 } else {
@@ -48,15 +48,7 @@ public class DuelCommand implements CommandExecutor {
                     Player player2 = Bukkit.getPlayer(arguments[0]);
     
                     if(player2 == null){
-                        sender.sendMessage("§c§nO jogador escolhido está ofline!");
-                        return false;
-                    }
-                    if(manager.inDuel(player2.getUniqueId())){
-                        sender.sendMessage("§c§nO jogador escolhido está em um duelo!");
-                        return false;
-                    }
-                    if(main.economy.getBalance(player2) < money){
-                        sender.sendMessage("§c§nA recompensa é maior que seu dinheiro atual.");
+                        sender.sendMessage("§cO jogador escolhido está ofline!");
                         return false;
                     }
 

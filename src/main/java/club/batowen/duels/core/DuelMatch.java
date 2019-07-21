@@ -96,6 +96,12 @@ public class DuelMatch {
         return state;
     }
     
+    public boolean compareUUIDS(UUID uuid1, UUID uuid2) {
+        if(uuid1 == this.player1 || uuid1 == this.player2){
+            return uuid2 == this.player2 || uuid2 == this.player2;
+        }
+        return false;
+    }
     /**
      * @return the invitetask
      */
@@ -146,6 +152,7 @@ public class DuelMatch {
                 player2.showPlayer(all);
         }
         audience.forEach((uuid) -> resetEspectator(Bukkit.getPlayer(uuid)));
+        audience.clear();
         dueltask.cancel();
         DuelsManager.getInstance().removeMatch(this);
     }
