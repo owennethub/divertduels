@@ -44,7 +44,7 @@ public class Commands {
         final Player player = commands.getPlayer();
         final DuelsManager manager = DuelsManager.getInstance();
 
-        Player target = Bukkit.getPlayer(commands.getArguments()[1]);
+        Player target = Bukkit.getPlayer(commands.getArguments()[0]);
 
         if(target == null) {
             player.sendMessage("§cJogador offline");
@@ -77,8 +77,9 @@ public class Commands {
             this.arguments = args;
         }
         /**
-         * @return the arguments
-  gi       */
+         * @return the argument 
+         *       
+         * */
         public String[] getArguments() {
             return arguments;
         }

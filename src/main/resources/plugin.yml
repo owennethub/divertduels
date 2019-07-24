@@ -2,6 +2,7 @@ name: duelzaodaporra
 main: club.batowen.DuelsMain
 version: 0.1
 author: owen_antigo
+dependency: [Vault]
 commands:
   duelo:
     description: vem x1 lixo

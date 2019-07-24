@@ -14,7 +14,6 @@ import club.batowen.duels.others.PrettyMessage;
 public class DuelCommand implements CommandExecutor {
 
     private final DuelsManager manager = DuelsManager.getInstance();
-    private final DuelsMain main = DuelsMain.getInstance();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] arguments) {
@@ -32,6 +31,12 @@ public class DuelCommand implements CommandExecutor {
                     sender.sendMessage("§cTermine seu duelo para usar este comando");
                     return false;
                 }
+                
+                if(player1.getName().toLowerCase().equalsIgnoreCase(arguments[0].toLowerCase())){
+                    sender.sendMessage("§cEscolha outro jogador por favor");
+                    return false;
+                }
+
                 if(!NumberUtils.isNumber(arguments[1])){
                     if(arguments[1].equalsIgnoreCase("aceitar"))
                         Commands.acceptduel.accept(new Commands.SimpleCommand(player1, arguments));
@@ -39,8 +44,8 @@ public class DuelCommand implements CommandExecutor {
                         Commands.assistduel.accept(new Commands.SimpleCommand(player1, arguments));
                     else {
                         sender.sendMessage("§fPara começar um duelo use §e/duelo <jogador> <recompensa>");
-                        sender.sendMessage("§ePara aceitar um duelo use §e/duelo <jogador> §eaceitar");
-                        sender.sendMessage("§ePara assistir um duelo use §e/duelo <jogador> §eeassistir");
+                        sender.sendMessage("§fPara aceitar um duelo use §e/duelo <jogador> §eaceitar");
+                        sender.sendMessage("§fPara assistir um duelo use §e/duelo <jogador> §eeassistir");
                     }
                         
                 } else {
@@ -52,7 +57,7 @@ public class DuelCommand implements CommandExecutor {
                         return false;
                     }
 
-                    PrettyMessage invitemsg = new PrettyMessage(5);
+                    PrettyMessage invitemsg = new PrettyMessage(7);
                     invitemsg.set(0, "");
                     invitemsg.set(1, invitemsg.centralize("§6§DUELO DE PVP"));
                     invitemsg.set(2, "");
