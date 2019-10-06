@@ -43,9 +43,9 @@ public class DuelsListeners implements Listener{
     public void playerquitduel(PlayerTeleportEvent event) {
         Player player = event.getPlayer();
 
-        if(manager.inDuel(player.getUniqueId()) && event.getTo().distance(DuelsMain.getInstance().duelsconfig.getSpawn()) > 2) {
+        if(manager.inDuel(player.getUniqueId()) && event.getTo().distance(DuelsMain.getInstance().duelsconfig.getSpawn()) > 2)
             event.setCancelled(true);
-        } else if(!manager.inDuel(player.getUniqueId()) && event.getFrom().distance(DuelsMain.getInstance().duelsconfig.getAssistLocation()) < 10){
+        else if(!manager.inDuel(player.getUniqueId()) && event.getFrom().distance(DuelsMain.getInstance().duelsconfig.getAssistLocation()) < 10){
             DuelMatch match = manager. lookupMatchBySpectatorUuid(player.getUniqueId());
             if(match != null) {
                 match.resetEspectator(player);
